@@ -48,15 +48,16 @@ func initArgs(args []string) {
 		printError("address undefined")    
 	}
 }
+
 func client() {    
 	for {        
 		var message = inputString()        
-		var splited = strings.Split(message, " ")        
+		var splited = strings.Split(message, " ")
 		switch splited[0] {            
 		case ":exit": os.Exit(0)            
 		case ":network": network()            
 		case ":connect":                
-			if len(splited) > 1 {                    
+			if len(splited) > 1 {                 
 				connectTo(splited[1:])                
 			}            
 		case ":disconnect":                
@@ -65,7 +66,7 @@ func client() {
 			}            
 		default:                 
 			for addr := range connections {                    
-				sendPacket(addr, message)                
+				sendPacket(addr, splited[1:])                
 			}        
 		}    
 	}
