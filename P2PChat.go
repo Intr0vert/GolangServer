@@ -55,18 +55,18 @@ func client() {
 		var splited = strings.Split(message, " ")
 		switch splited[0] {            
 		case ":exit": os.Exit(0)            
-		case ":network": network()            
-		case ":connect":                
-			if len(splited) > 1 {                 
-				connectTo(splited[1:])                
+		case ":network": network()   
+		case ":connect":
+			if len(splited) > 1 {          
+				connectTo(splited[1:])
 			}            
 		case ":disconnect":                
 			if len(splited) > 1 {                    
 				disconnectFrom(splited[1:])                
 			}            
-		default:                 
+		default:
 			for addr := range connections {                    
-				sendPacket(addr, splited[1:])                
+				sendPacket(addr, message)
 			}        
 		}    
 	}
